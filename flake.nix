@@ -21,7 +21,7 @@
     loadAndPush = systems: image:
       builtins.concatStringsSep "\n" (nixpkgs.lib.mapAttrsToList
         (system: value: ''
-          docker load -i ${value}
+          docker load -i ${value}/app
           docker push ${image.imageName}:${image.imageTag}-${system}
         '') (allImages systems image));
   in {
